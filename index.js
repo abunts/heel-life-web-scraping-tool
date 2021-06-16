@@ -1,6 +1,6 @@
 const puppeteer = require('puppeteer');
 //homebase url to grab heel life events
-const homeURL = 'https://heellife.unc.edu/events';
+const homeURL = 'https://heellife.unc.edu';
 
 //fetching events async function
   const fetchEvents = async () => {
@@ -16,11 +16,11 @@ const homeURL = 'https://heellife.unc.edu/events';
     let urls = [];
     //pulling the events from the main event page on heel life website
     let anchorTags = document.querySelectorAll('#event-discovery-list a');
-    /* ADDED:
+    /*ADDED:
     //after clicking on "load more" button
-    page.click('button'),
-    page.waitForSelector('button')
-    */
+    page.click('//*[@id="react-app"]/div/div/div/div[4]/div/div/div[2]/div[2]/div[2]/button'),
+    page.waitForSelector('//*[@id="react-app"]/div/div/div/div[4]/div/div/div[2]/div[2]/div[2]/button')
+   */
     anchorTags.forEach((card) => {
       //pulling url from specific event (getting its href) and adding it to event(s) array 
       urls.push(card.getAttribute('href'));
@@ -44,12 +44,12 @@ const homeURL = 'https://heellife.unc.edu/events';
   const title = document.querySelector('h1').innerText;
   //pulling description from the event card (found in a div with class name DescriptionText)
   const description = document.querySelector('.DescriptionText').innerText;
-  /* ADDED:
+  /*ADDED:
   //sorting through events and pulling events related to data science 
   const dataScience = document.document.querySelector('#event-discovery-list a[href*="data science="]');
   if(document.contains(dataScience)){
     data.push({...pageData, url: homeURL + url});
-  }*/
+  } */
   return {title, description};
 });
 //adding new info to the data array
